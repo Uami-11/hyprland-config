@@ -3,9 +3,14 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("qs -c $qsConfig ipc call brigh
 
 hl.bind("CTRL+SUPER+ALT+Slash", hl.dsp.exec_cmd("xdg-open ~/.config/hypr/custom/keybinds.lua"), {description = "Edit user keybinds"} )
 
--- Close window: SUPER+SHIFT+Q (restores old behavior, unbinds SUPER+Q)
+-- Close window: SUPER+SHIFT+Q (old behavior); SUPER+Q is now maximize
 hl.unbind("SUPER + Q")
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close(), { description = "Window: Close" })
+hl.bind("SUPER + Q", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }), { description = "Window: Maximize" })
+
+-- App search (fuzzel): restore old SUPER+D behavior (upstream bound SUPER+D to maximize)
+hl.unbind("SUPER + D")
+hl.bind("SUPER + D", hl.dsp.exec_cmd("fuzzel"), { description = "App: Search apps" })
 
 -- Keep the ALT+F4 hint pointing at the correct close keybind
 hl.unbind("ALT + F4")
