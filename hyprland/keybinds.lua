@@ -470,10 +470,11 @@ hl.bind(
 hl.bind("SUPER + L", hl.dsp.exec_cmd("loginctl lock-session"), { description = "Session: Lock" })
 hl.bind(
 	"SUPER + SHIFT + L",
-	hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"),
-	{ locked = true, description = "Session: Sleep" }
-) -- Sleep
--- hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"), {locked = true} ) -- # [hidden] Suspend when laptop lid is closed, uncomment if for whatever reason it's not the default behavior
+	hl.dsp.exec_cmd("loginctl lock-session"),
+	{ locked = true, description = "Session: Lock" }
+) -- Lock (was sleep)
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("loginctl lock-session && hyprctl dispatch 'hl.dsp.dpms({ action = \"disable\" })'"), { locked = true }) -- Lock + screen off when lid closes
+hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("hyprctl dispatch 'hl.dsp.dpms({ action = \"enable\" })'"), { locked = true }) -- Screen on when lid opens
 
 hl.bind(
 	"CTRL + SHIFT + ALT + SUPER + Delete",
