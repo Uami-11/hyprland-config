@@ -1,3 +1,3 @@
 -- Cursor theme
-hl.env("XCURSOR_THEME", "Ralsei-Deltarune")
-hl.env("XCURSOR_SIZE", "96")
+hl.env("XCURSOR_THEME", "Ralsei-Prxy")
+hl.env("XCURSOR_SIZE", "64")
