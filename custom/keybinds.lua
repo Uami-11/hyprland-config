@@ -3,6 +3,9 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("qs -c $qsConfig ipc call brigh
 
 hl.bind("CTRL+SUPER+ALT+Slash", hl.dsp.exec_cmd("xdg-open ~/.config/hypr/custom/keybinds.lua"), {description = "Edit user keybinds"} )
 
+-- Open foot terminal: SUPER+SHIFT+RETURN
+hl.bind("SUPER + SHIFT + Return", hl.dsp.exec_cmd("foot"), { description = "App: Terminal (foot)" })
+
 -- Close window: SUPER+SHIFT+Q (old behavior); SUPER+Q is now maximize
 hl.unbind("SUPER + Q")
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close(), { description = "Window: Close" })
@@ -17,6 +20,12 @@ hl.unbind("ALT + F4")
 hl.bind("ALT + F4", function()
     hl.exec_cmd("notify-send \"Wrong close keybind\" \"Super+Shift+Q to close. Use Alt+F4 for Windows VMs\" -a Hyprland")
 end, { non_consuming = true })
+
+-- Toggle cursor visibility: SUPER+ALT+C
+hl.bind("SUPER + ALT + C", function()
+    local invisible = hl.get_config("cursor:invisible")
+    hl.config({ cursor = { invisible = not invisible } })
+end, { description = "Screen: Toggle cursor visibility" })
 
 -- Move window to workspace (SUPER+SHIFT+1-0, follows like the old movetoworkspace)
 for i = 1, 10 do
